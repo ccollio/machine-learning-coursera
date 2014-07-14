@@ -14,7 +14,10 @@ J = 0;
 %               You should set J to the cost.
 
 
+predictions = X * theta;				% predictions of hypothesis on all m examples
+sqrErrors = (predictions - y).^2;		% square sqrErrors
 
+J = 1/(2 * m) * sum(sqrErrors);			% return the result of the cost function
 
 
 % =========================================================================

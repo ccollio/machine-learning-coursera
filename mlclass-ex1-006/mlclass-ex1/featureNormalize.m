@@ -24,7 +24,36 @@ sigma = zeros(1, size(X, 2));
 %               each feature. 
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
-%       
+%     
+
+
+f_count = 1;									% initialize the feature counter
+num_features = size(X,2);						% initialize the number of iterations
+for iter = 1:num_features
+
+	mu(1,f_count) = mean(X(:,f_count));
+	sigma(1,f_count) = std(X(:,f_count));
+
+	f_count++;
+end
+
+
+f_count = 1;									% initialize the feature counter
+ex_count = 1;									% initialize the example counter
+num_examples = size(X,1);						% initialize the number of iterations
+for iter = 1:num_examples
+
+	% normalize each feature in the example
+	for iter = 1:num_features
+		
+		X_norm(ex_count,f_count) = (X(ex_count,f_count) - mu(1,f_count)) / sigma(1,f_count);
+
+		f_count++;
+	end
+
+	f_count = 1;								% reinitialize the feature counter for next example
+	ex_count++;
+end
 
 
 

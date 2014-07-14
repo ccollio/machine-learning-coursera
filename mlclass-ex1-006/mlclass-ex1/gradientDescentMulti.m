@@ -17,14 +17,38 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
+    hypo = X * theta;                       % compute hypothesis for all examples
+    
+
+    theta_tmp = theta;                      % container for storing new theta values
+    num_features = size(X,2);               % number of features
+    f_count = 1;                            % keeps track current feature; initialize to theta_0
+
+    for iter = 1:num_features
+
+        if (f_count == 1)
+
+            % special case for theta_0 because it is not multiplied by an x-value
+            theta_tmp(f_count) = theta(f_count) - alpha * (1/m) * sum(hypo-y);
+
+        else
+
+            theta_tmp(f_count) = theta(f_count) - alpha * (1/m) * sum((hypo-y) .* X(:,f_count));
+
+        endif
+
+        f_count++;
+    end
 
 
+    % assign new theta values
+    f_count = 1;
+    for iter = 1:num_features
 
+        theta(f_count) = theta_tmp(f_count);
+        f_count++;
 
-
-
-
-
+    end
 
 
     % ============================================================
