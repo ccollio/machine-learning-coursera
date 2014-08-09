@@ -15,10 +15,17 @@ X_poly = zeros(numel(X), p);
 %
 % 
 
+num_examples = size(X, 1);
 
+% set original values of X
+X_poly(:, 1) = X(:, 1);
 
-
-
+% set polynomial features from 2th to pth power
+for i = 1:num_examples
+	for exp = 2:p
+		X_poly(i, exp) = X(i, 1)^exp;
+	end
+end 
 
 % =========================================================================
 

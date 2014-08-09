@@ -51,15 +51,22 @@ error_val   = zeros(m, 1);
 %       end
 %
 
-% ---------------------- Sample Solution ----------------------
+size_val = size(Xval, 1);				% size of the cross validation set
 
+for i = 1:m
+   
+   	% create the training subset
+	X_i = X(1:i, :);
+	y_i = y(1:i);
 
+	% get the current theta 
+    theta_i = trainLinearReg(X_i, y_i, lambda);
 
-
-
-
-
-% -------------------------------------------------------------
+    % save current training error and cross validation error
+    error_train(i, 1) = linearRegCostFunction(X_i, y_i, theta_i, 0);
+	error_val(i, 1) = linearRegCostFunction(Xval, yval, theta_i, 0);
+        
+end
 
 % =========================================================================
 

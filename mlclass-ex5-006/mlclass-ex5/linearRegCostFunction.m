@@ -1,3 +1,4 @@
+
 function [J, grad] = linearRegCostFunction(X, y, theta, lambda)
 %LINEARREGCOSTFUNCTION Compute cost and gradient for regularized linear 
 %regression with multiple variables
@@ -20,14 +21,23 @@ grad = zeros(size(theta));
 %
 
 
+% ~~~~~~~~~COMPUTE THE COST~~~~~~~~~
 
+num_theta = size(theta)(1);				% capture num rows of theta
+predictions = X * theta;				% predictions of hypothesis on all m examples
+sqrErrors = (predictions - y).^2;		% square sqrErrors
+sq_thetas = theta.^2;					% square theta values
 
+% return the result of the regularized cost function
+J = 1/(2 * m) * sum(sqrErrors) + (lambda/(2*m) * sum(sq_thetas(2:num_theta,:)));			
+								
 
+% ~~~~~~~~~COMPUTE THE GRADIENT~~~~~~~~~
 
+mask = ones(size(theta));		
+mask(1) = 0;							% no regularization of theta_0
 
-
-
-
+grad = (1/m) .* (X' * (predictions-y)) + (lambda/m) .* (theta .* mask)
 
 
 % =========================================================================

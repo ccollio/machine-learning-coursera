@@ -39,14 +39,21 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
+lam_vec_length = length(lambda_vec);		% capture lambda vect length for the loop
+size_val = size(Xval, 1);					% size of the cross validation set
 
+for i = 1:lam_vec_length
 
+	lambda = lambda_vec(i);
 
+	% get theta result from using current lambda value 
+    theta_i = trainLinearReg(X, y, lambda);
 
+    % save current training error and cross validation error
+    error_train(i, 1) = linearRegCostFunction(X, y, theta_i, 0);
+	error_val(i, 1) = linearRegCostFunction(Xval, yval, theta_i, 0);
 
-
-
-
+end
 
 % =========================================================================
 
