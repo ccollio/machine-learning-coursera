@@ -18,7 +18,9 @@ end
 
 % Plot the SVM boundary
 hold on
-contour(X1, X2, vals, [0 0], 'Color', 'b');
+contour(X1, X2, vals, [1 1], 'linecolor', 'blue');
+% Replacing line below due to issue with 'Unknown hggroup property Color'
+% contour(X1, X2, vals, [0 0], 'Color', 'b');
 hold off;
 
 end

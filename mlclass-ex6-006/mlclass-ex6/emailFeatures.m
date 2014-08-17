@@ -48,12 +48,22 @@ x = zeros(n, 1);
 %
 %
 
+% load dictionary
+vocabList = getVocabList();
+vocabListLen = length(vocabList);
 
+% get email length
+email_length = length(word_indices);
 
-
-
-
-
+for i = 1:n
+	% check each word in the email
+	for j = 1:email_length
+		if ( strcmp(vocabList{word_indices(j)}, vocabList{i}) ) 
+            x(i) = 1;
+            break;
+        end
+	end
+end
 
 % =========================================================================
     
