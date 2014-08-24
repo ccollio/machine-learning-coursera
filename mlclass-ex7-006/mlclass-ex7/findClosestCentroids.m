@@ -21,10 +21,21 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+num_examples = size(X, 1);
+dist_to_centroid = zeros(K, 1);
 
+for i = 1:num_examples
 
+    current_example = X(i,:);
+    for j =1:K
 
+    	% use norm() to compete the distance bewteen the points
+        dist_to_centroid(j) = norm(current_example - centroids(j,:));
+        
+    end
 
+    [min_val, idx(i)] = min(dist_to_centroid);
+end
 
 
 % =============================================================

@@ -26,12 +26,17 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+for i = 1:K
 
+	% map boolean values to each idx for the current centroid
+	points_assigned = double(idx == i);
 
+	% use boolean values to exclude points not assigned to the centroid
+	% note: repmat() is a function that will replicate a matrix
+	% copmute the mean and assign to the returned variable
+	centroids(i,:) = sum(X .* repmat(points_assigned,1,n)) ./ sum(points_assigned);
 
-
-
-
+end
 
 % =============================================================
 
